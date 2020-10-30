@@ -64,7 +64,9 @@ func ext(pwd string) string {
 
 // 统计行数
 func Count(file *File, set *setting.Setting) int {
-	if (set.IgnoreHide && file.IsHide) || (set.SpecifiedSuffix != nil && !in(set.SpecifiedSuffix, file.Suffix)) {
+	if (set.IgnoreHide && file.IsHide) ||
+		(set.SpecifiedSuffix != nil && !in(set.SpecifiedSuffix, file.Suffix)) ||
+		(set.ButSuffix != nil && in(set.ButSuffix, file.Suffix)){
 		return 0
 	}
 	count, _ := readLine(file.FullPath, set.IgnoreSpaceLine)

@@ -5,13 +5,16 @@ import (
 	"count/setting"
 )
 
-func Count(pwd string, set *setting.Setting) int {
-	fileList, folderList := file.List(pwd)
+func Count(f *file.Folder, set *setting.Setting) int {
+	if set.IgnoreHide && f.IsHide{
+		return 0
+	}
+	fileList, folderList := file.List(f.FullPath)
 
 	count := CountFileList(fileList, set)
 
 	for _, folder := range folderList {
-		count += Count(folder.FullPath, set)
+		count += Count(folder, set)
 	}
 
 	return count
