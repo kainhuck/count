@@ -68,7 +68,7 @@ func Count(file *File, set *setting.Setting) int {
 		return 0
 	}
 	count, _ := readLine(file.FullPath, set.IgnoreSpaceLine)
-	if set.ShowInfo{
+	if set.ShowInfo {
 		fmt.Printf("[%s]: %d\n", file.FullPath, count)
 	}
 	return count
